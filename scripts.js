@@ -5,7 +5,6 @@ function playSound(e){
     const audio = document.querySelector(`.audio-${e.keyCode}`)
     if(!key) return;
 
-    console.log(key);
     key.classList.add("playing")
     audio.currentTime = 0;
     audio.play()
@@ -13,6 +12,6 @@ function playSound(e){
 
 const keys = document.querySelectorAll('.key');
 keys.forEach(key => key.addEventListener('transitionend', function(e){
-    console.log(e)
+    if(e.propertyName !== 'transform') return;
     e.target.classList.remove('playing')
 }))
